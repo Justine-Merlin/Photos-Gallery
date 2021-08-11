@@ -9,18 +9,17 @@ const Navigation = () => {
 
     return (
         <div className='navigation'>
-            <Logo />
             <div className={showMenu ? "nav-bar active" : "nav-bar"}>
-                <NavLink exact to='/' activeClassName='nav-active' onClick={() => setShowMenu(false)}>
-                    Accueil
+                <NavLink exact to='/' onClick={() => setShowMenu(false)}>
+                    <Logo />
                 </NavLink>
-                <NavLink  to='/gallery' activeClassName='nav-active' onClick={() => setShowMenu(false)}>
-                    Gallerie
-                </NavLink>
-                <NavLink  to='/about' activeClassName='nav-active' onClick={() => setShowMenu(false)}>
+                <NavLink  to='/about' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     A propos
                 </NavLink>
-                <NavLink  to='/contact' activeClassName='nav-active' onClick={() => setShowMenu(false)}>
+                <NavLink  to='/gallery' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
+                    Gallerie
+                </NavLink>
+                <NavLink  to='/contact' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     Contact
                 </NavLink>
             </div>
