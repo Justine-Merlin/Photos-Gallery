@@ -1,0 +1,59 @@
+.gallery {
+    background-color:rgba(105, 105, 105, 0.322);
+    padding: 20px;
+    border: 1px solid rgb(207, 155, 88);
+    border-radius: 10px;
+    margin: 0 10px;
+    .image-grid {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        .img-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 5px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    transform: scale(105%); 
+                }
+            }
+        }
+    }
+    button {
+        display: block;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgb(194, 194, 194);
+        border-radius: 10px;
+        font-size: 2.3rem;
+        border: 0px solid rgba(128, 128, 128, 0);
+        transition: 0.25s;
+        &:hover {
+            background-color: rgb(216, 216, 216);
+        }
+        &:active {
+            background-color: rgb(97, 97, 97);
+            border: 1px solid rgba(0, 0, 0, 0.294);
+            
+        }
+    }
+}
+
+@media screen and (max-width: 546px) {
+    .gallery {
+        padding: 0px;
+        border: none;
+        .image-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+        }
+        button {
+            font-size: 1.5rem;
+        }
+    }
+}

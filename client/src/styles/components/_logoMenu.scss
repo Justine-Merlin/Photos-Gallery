@@ -1,0 +1,26 @@
+.logo-menu {
+    position: fixed;
+    top: 60px;
+    right: 40px;
+    transform: translateY(-50%);
+    color: #fff;
+    opacity: 0;
+    transition: 0.35s;
+    .fa-logo {
+        height: 35px;
+        width: 35px;
+        padding: 8px;
+        transition: 0.35s;
+
+        &:hover {
+            color: rgb(207, 155, 88);
+        }
+    }
+    
+}
+@media screen and (max-width: 900px) {
+    .logo-menu {
+        opacity: 1;
+    }
+    
+}

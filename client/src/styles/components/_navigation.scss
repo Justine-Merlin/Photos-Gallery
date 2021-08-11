@@ -1,0 +1,82 @@
+.navigation {
+    height: 120px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(54, 54, 54);
+    overflow: hidden;
+    z-index: 50;
+    .nav-bar {
+        margin-left: 180px;
+        display: flex;
+        height: 120px;
+        align-items: center;
+        transition: 0.25s;
+    }
+    .nav-link {
+        margin: 0 10px;
+        padding: 10px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        position: relative;
+        transition: all 0.25s ease-in;
+        &::after {    
+            background: none repeat scroll 0 0 transparent;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            background: #fff;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+          }
+          &:hover:after { 
+            width: 100%; 
+            left: 0; 
+          }
+    }
+    .nav-active {
+        color: rgb(207, 155, 88);
+        &::after {
+            content: "";
+            height: 2px;
+            width: 100%;
+            background-color: rgb(207, 155, 88);
+            position: absolute;
+            left: 0;
+        }
+    }
+}
+@media screen and (max-width: 900px) {
+    .navigation {
+        overflow: visible;   
+        
+        .nav-bar {
+            height: fit-content;
+            width: 100%;
+            margin: 120px 0;
+            padding: 20px 0;
+            background-color: rgb(54, 54, 54);
+            border-top: 1px solid rgb(121, 121, 121);
+            border-bottom: 1px solid rgb(121, 121, 121);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            visibility: hidden;
+            
+        }
+        .active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
