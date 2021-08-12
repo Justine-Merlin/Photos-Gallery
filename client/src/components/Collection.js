@@ -26,8 +26,8 @@ const Collection = () => {
         <div className="gallery">
             <div className='image-grid'>
                 {imageList.map((image) => (
-                    <div className="img-container">
-                        <img key={image.public_id} src={image.url} alt={image.public_id}></img>
+                    <div className="img-container" key={image.asset_id}>
+                        <img src={image.url} alt={image.public_id}></img>
                     </div>
                 ))}
             </div>

@@ -8,19 +8,19 @@ const Home = () => {
   const titleStyle = useSpring({
     from: { opacity: 0},
     to: { opacity: 1 },
-    config: { duration: 1000 },
+    config: { duration: 2000 },
     delay: 2200
   })
   const subTitleStyle = useSpring({
     from: { opacity: 0},
     to: { opacity: 1 },
-    config: { duration: 1000 },
+    config: { duration: 2000 },
     delay: 3200
   })
   const homeBtnStyle = useSpring({
     from: { opacity: 0, transform: 'translateX(50px)'},
     to: { opacity: 1, transform: 'translateX(0px)' },
-    config: { duration: 1000 },
+    config: { duration: 2000 },
     delay: 4200
   })
   const logoStyle = useSpring({
