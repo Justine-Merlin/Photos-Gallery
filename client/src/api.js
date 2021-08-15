@@ -11,3 +11,17 @@ export const getImages = async (nextCursor) => {
 
     return responseJson;
 }
+
+export const filteredImages = async (filterValue, nextCursor) => {
+    const params = new URLSearchParams();
+    params.append(`expression`, `${filterValue}`);
+    
+    if(nextCursor){
+        params.append('next_cursor', nextCursor)
+    }
+
+    const response = await fetch(`${API_URL}/search?${params}`);
+    const responseJson = await response.json();
+
+    return responseJson
+}
