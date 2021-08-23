@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { getImages } from '../api';
+import { useSpring, animated } from 'react-spring';
 
 const Collection = () => {
     const [imageList, setImageList] = useState([]);
     const [nextCursor, setNextCursor] = useState(null);
-    const [filterValue, setFilterValue] = useState([]);
+    const [filterValue, setFilterValue] = useState('');
     
     const checkboxsFilter = [
         {id: 0, label: "Objets"},
         {id: 1, label: "Mariages"},
         {id: 2, label: "Portrait"}, 
         {id: 3, label: "Paysages"}];
+
+    const cardStyle = useSpring({
+        from: { opacity: 0},
+        to: { opacity: 1 },
+        config: { duration: 2500 },
+        delay: 2000
+    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,16 +50,17 @@ const Collection = () => {
                     return (
                         <li key={checkbox.id}>
                             <input 
-                                type="checkbox"
+                                type="radio"
                                 value={checkbox.label} 
                                 id={checkbox.label}
-                                onChange={(e) => {
-                                    if(e.target.checked) {
-                                        setFilterValue([...filterValue, checkbox.label])
+                                checked={checkbox !== '' && checkbox.label === filterValue}
+                                onClick={(e) => {
+                                    if(filterValue === '' || checkbox.label !== filterValue) {
+                                        setFilterValue(e.target.value);
+                                        e.target.checked =true
                                     } else {
-                                        setFilterValue(
-                                            filterValue.filter(element => element !== e.target.value)
-                                        )
+                                        setFilterValue('');
+                                        e.target.checked = false
                                     }
                                 
                                     // handleFilterImages()
@@ -68,7 +77,9 @@ const Collection = () => {
                     .filter((image) => image.public_id.includes(filterValue)) 
                     .map((image) => (
                         <div className="img-container" key={image.asset_id}>
-                            <img src={image.url} alt={image.public_id}></img>
+                            <animated.div style={{...cardStyle}} className="animated-container">
+                                <img src={image.url} alt={image.public_id} ></img>
+                            </animated.div>
                         </div>
                     ))}
                 </div>
