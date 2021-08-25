@@ -16,7 +16,7 @@ const HomeAnimation = () => {
         from: { opacity: 0, transform: 'scale(1.1)'},
         enter: { opacity: 1, transform: 'scale(1)'},
         leave: { opacity: 0, transform: 'scale(0.9)'},
-        config: {duration : 2000},
+        config: {duration : 3000},
     })
     
     useEffect(() => {
