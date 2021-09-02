@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getImages } from '../api';
+import { filteredImages, getImages } from '../api';
 import Card from './Card';
 
 const Collection = () => {
 
     const [imageList, setImageList] = useState([]);
     const [filterValue, setFilterValue] = useState('');
+    const [nextCursor, setNextCursor] = useState(null);
 
     const checkboxsFilter = [
         {id: 0, label: "Objets"},
@@ -15,11 +16,18 @@ const Collection = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const responseJson = await getImages();
-            setImageList(responseJson.resources);
+            if(filterValue !== '') {
+                const responseJson = await filteredImages(filterValue);
+                setImageList(responseJson.resources);
+                setNextCursor(responseJson.next_cursor);
+            } else {
+                const responseJson = await getImages(nextCursor);
+                setImageList(responseJson.resources);
+                setNextCursor(responseJson.next_cursor);
+            }
         };
-        fetchData();   
-    }, [])
+        fetchData();    
+    }, [filterValue]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleFilterImage = (e) => {
         if(filterValue === '' || e.target.value !== filterValue) {
@@ -27,9 +35,27 @@ const Collection = () => {
             e.target.checked =true
         } else {
             setFilterValue('');
+            setNextCursor(null)
             e.target.checked = false
         }
     }
+    const handleLoadMoreButtonClick= async () => {
+        if(filterValue !== '') {
+            const responseJson = await filteredImages(filterValue, nextCursor);
+            setImageList((currentImageList) => [
+                ...currentImageList, 
+                ...responseJson.resources
+            ]);
+            setNextCursor(responseJson.next_cursor)
+        } else {
+            const responseJson = await getImages(nextCursor);
+            setImageList((currentImageList) => [
+                ...currentImageList, 
+                ...responseJson.resources
+            ]);
+            setNextCursor(responseJson.next_cursor)
+        }
+    };
     return (
         <div className="collection">
             <div className="filter">
@@ -51,13 +77,13 @@ const Collection = () => {
             <div className="gallery">
                 <div className='image-grid'>
                     {imageList
-                        .filter((image) => image.public_id.includes(filterValue)) 
                         .map((image) => (
-                            <Card image={image} key={image.asset_id}/>
-                    ))}
+                                <Card image={image} key={image.asset_id}/>  
+                            )
+                        )}
                 </div>
+                {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
         </div>
     )};
-
 export default Collection;
