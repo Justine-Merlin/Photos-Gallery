@@ -17,7 +17,7 @@ const auth = {
 };
 
 app.get('/photos', async (req, res) => {
-    const response = await axios.get(BASE_URL + '/resources/image?max_results=35', {
+    const response = await axios.get(BASE_URL + '/resources/image?max_results=20', {
         auth,
         params: {
             next_cursor: req.query.next_cursor
@@ -27,7 +27,7 @@ app.get('/photos', async (req, res) => {
 });
 
 app.get('/search', async (req, res) => {
-    const response = await axios.get(BASE_URL + '/resources/search?max_results=35', {
+    const response = await axios.get(BASE_URL + '/resources/search?max_results=20', {
         auth,
         params: {
             expression: req.query.expression,

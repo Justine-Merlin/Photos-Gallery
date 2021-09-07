@@ -59,13 +59,12 @@ const Collection = () => {
         }
     };
     const transitions = useTransition(imageList,{
-        key: imageList.asset_id,
-        from: { opacity: 0 },
+        keys: image => image.key,
+        from: { opacity: 0},
+        enter: { opacity: 1},
         leave: { opacity: 0 },
-        enter: { opacity: 1 },
-        config: {duration: 500},
-        trail: 20 
     });
+    console.log(imageList);
     return (
         <div className="collection">
             <div className="filter">
@@ -87,7 +86,7 @@ const Collection = () => {
             <div className="gallery">
                 <div className='image-grid'>
                     {transitions((style, image) => (
-                        <animated.div className="img-container" style={{...style}}>
+                        <animated.div className="img-container" style={{...style}} >
                                 <Card image={image} key={image.asset_id}/>
                         </animated.div>
                         ))}
