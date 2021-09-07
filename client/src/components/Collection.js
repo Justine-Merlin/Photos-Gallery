@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { filteredImages, getImages } from '../api';
+import { useTransition, animated } from 'react-spring';
 import Card from './Card';
 
 const Collection = () => {
@@ -16,6 +17,7 @@ const Collection = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            setImageList([])
             if(filterValue !== '') {
                 const responseJson = await filteredImages(filterValue);
                 setImageList(responseJson.resources);
@@ -56,6 +58,14 @@ const Collection = () => {
             setNextCursor(responseJson.next_cursor)
         }
     };
+    const transitions = useTransition(imageList,{
+        key: imageList.asset_id,
+        from: { opacity: 0 },
+        leave: { opacity: 0 },
+        enter: { opacity: 1 },
+        config: {duration: 500},
+        trail: 20 
+    });
     return (
         <div className="collection">
             <div className="filter">
@@ -76,11 +86,11 @@ const Collection = () => {
             </div>
             <div className="gallery">
                 <div className='image-grid'>
-                    {imageList
-                        .map((image) => (
-                                <Card image={image} key={image.asset_id}/>  
-                            )
-                        )}
+                    {transitions((style, image) => (
+                        <animated.div className="img-container" style={{...style}}>
+                                <Card image={image} key={image.asset_id}/>
+                        </animated.div>
+                        ))}
                 </div>
                 {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
