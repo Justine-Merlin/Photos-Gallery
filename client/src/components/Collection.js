@@ -58,13 +58,14 @@ const Collection = () => {
             setNextCursor(responseJson.next_cursor)
         }
     };
+    
     const transitions = useTransition(imageList,{
         keys: image => image.key,
         from: { opacity: 0},
         enter: { opacity: 1},
         leave: { opacity: 0 },
     });
-    console.log(imageList);
+
     return (
         <div className="collection">
             <div className="filter">

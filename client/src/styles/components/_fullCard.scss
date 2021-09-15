@@ -1,0 +1,22 @@
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    div {
+        background-color: whitesmoke;
+        width: fit-content;
+        padding: 30px;
+        border-radius: 10px;
+        transition: 0.2s;
+        img {
+            border-radius: 10px;
+            max-height: 80vh;
+        }
+    }
+}

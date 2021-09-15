@@ -10,22 +10,6 @@
         gap: 0.5rem;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         min-height: 100vh;
-
-        .img-container {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            overflow: hidden;
-            img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: 0.3s;
-                    &:hover {
-                        transform: scale(105%); 
-                    }
-                }
-        }
     }
     button {
         display: block;
