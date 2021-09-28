@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { filteredImages, getImages } from '../api';
 import { useTransition, animated } from 'react-spring';
 import Card from './Card';
+import Loading from './Loading';
 
 const Collection = () => {
 
     const [imageList, setImageList] = useState([]);
     const [filterValue, setFilterValue] = useState('');
     const [nextCursor, setNextCursor] = useState(null);
+    const [isLoading, setIsLoading] = useState(false)
 
     const checkboxsFilter = [
         {id: 0, label: "Objets"},
@@ -17,15 +19,22 @@ const Collection = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setImageList([])
+            setImageList([]);
+            setIsLoading(false);
             if(filterValue !== '') {
                 const responseJson = await filteredImages(filterValue);
                 setImageList(responseJson.resources);
                 setNextCursor(responseJson.next_cursor);
+                setTimeout(() => {
+                    setIsLoading(true);                    
+                }, 200);
             } else {
                 const responseJson = await getImages(nextCursor);
                 setImageList(responseJson.resources);
                 setNextCursor(responseJson.next_cursor);
+                setTimeout(() => {
+                    setIsLoading(true);                    
+                }, 200);
             }
         };
         fetchData();    
@@ -84,13 +93,18 @@ const Collection = () => {
                 </li>
             ))}
             </div>
+
+
             <div className="gallery">
-                <div className='image-grid'>
-                    {transitions((style, image) => (
-                        <animated.div className="img-container" style={{...style}} >
-                                <Card image={image} key={image.asset_id}/>
-                        </animated.div>
-                        ))}
+                <div className='image-grid'>           
+                    {isLoading ?
+                        transitions((style, image) => (
+                            <animated.div className="img-container" style={{...style}} >
+                                    <Card image={image} key={image.asset_id}/>
+                            </animated.div>
+                    )) : 
+                    <Loading />
+                }
                 </div>
                 {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
