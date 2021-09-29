@@ -11,7 +11,7 @@ const Card = (props) => {
     to: { opacity: isToggle ? 1 : 0},
   });
 
-  console.log(isToggle);
+  console.log({image});
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { filteredImages, getImages } from '../api';
-import { useTransition, animated } from 'react-spring';
+import { useTrail, animated } from 'react-spring';
 import Card from './Card';
 import Loading from './Loading';
 
@@ -16,6 +16,9 @@ const Collection = () => {
         {id: 1, label: "Mariages"},
         {id: 2, label: "Portrait"}, 
         {id: 3, label: "Paysages"}];
+    
+    const config = { mass: 5, tension: 2000, friction: 200 };
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,22 +60,21 @@ const Collection = () => {
                 ...currentImageList, 
                 ...responseJson.resources
             ]);
-            setNextCursor(responseJson.next_cursor)
+            setNextCursor(responseJson.next_cursor);
         } else {
             const responseJson = await getImages(nextCursor);
             setImageList((currentImageList) => [
                 ...currentImageList, 
                 ...responseJson.resources
             ]);
-            setNextCursor(responseJson.next_cursor)
+            setNextCursor(responseJson.next_cursor);
         }
     };
     
-    const transitions = useTransition(imageList,{
-        keys: image => image.key,
-        from: { opacity: 0},
-        enter: { opacity: 1},
-        leave: { opacity: 0 },
+    const trail = useTrail(imageList.length,{
+        config,
+        from: { opacity: 0, x: 20 },
+        to: { opacity: isLoading ? 1 : 0, x: isLoading ? 20 : 10 }
     });
 
     return (
@@ -98,9 +100,15 @@ const Collection = () => {
             <div className="gallery">
                 <div className='image-grid'>           
                     {isLoading ?
-                        transitions((style, image) => (
-                            <animated.div className="img-container" style={{...style}} >
-                                    <Card image={image} key={image.asset_id}/>
+                        trail.map(({ x, ...otherProps }, i) => (
+                            <animated.div 
+                                className="img-container" 
+                                style={{
+                                    ...otherProps,
+                                    transform: x.interpolate(x => `translate3d(${x}px, 0, 0)`)
+                                }}
+                            >
+                                <Card image={imageList[i]} key={imageList.asset_id}/>
                             </animated.div>
                     )) : 
                     <Loading />
