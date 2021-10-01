@@ -1,51 +1,32 @@
 import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
+import FullCard from "./FullCard";
 
-const Card = (props) => {
-  const { image } = props;
+const Card = ( { image } ) => {
 
   const [isToggle, setIsToggle] = useState(false);
 
-  const enterStyle = useSpring({
-    from: { opacity: isToggle ? 0 : 1},
-    to: { opacity: isToggle ? 1 : 0},
-  });
-
-  console.log({image});
+  const handleChange = () => {
+    setIsToggle(!isToggle);
+  };
 
   return (
     <>
-      {isToggle ? (
-        <>
-          <img
-            className="basic-img"
-            image={image}
-            src={image.url}
-            alt={image.public_id}
-          ></img>
-          <animated.div
-            className="fullscreen-container"
-            onClick={() => setIsToggle(!isToggle)}
-            style={enterStyle}
-          >
-            <div>
-              <img
-                src={image.url}
-                alt={image.public_id}
-                onClick={() => setIsToggle(!isToggle)}
-              ></img>
-            </div>
-          </animated.div>
-        </>
-      ) : (
-        <img
-          className="basic-img"
-          image={image}
-          src={image.url}
-          alt={image.public_id}
-          onClick={() => setIsToggle(!isToggle)}
-        ></img>
-      )}
+      <img
+        className="basic-img"
+        image={image}
+        src={image.url}
+        alt={image.public_id}
+        onClick={handleChange}
+      ></img>
+      {isToggle ?
+        <div style={{visibility: "visible", opacity: 1, transition: "0.25s"}}>
+          <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
+        </div>
+        :
+        <div style={{visibility: "hidden", opacity: 0, transition: "0.25s"}}>
+          <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
+        </div>
+      }
     </>
   );
 };

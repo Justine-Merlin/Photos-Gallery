@@ -6,7 +6,6 @@ const Gallery = () => {
     return (
         <div>
             <Navigation />
-            <h1>Gallery</h1>
             <Collection />
         </div>
     );

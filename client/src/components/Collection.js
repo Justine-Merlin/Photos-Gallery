@@ -9,7 +9,7 @@ const Collection = () => {
     const [imageList, setImageList] = useState([]);
     const [filterValue, setFilterValue] = useState('');
     const [nextCursor, setNextCursor] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     const checkboxsFilter = [
         {id: 0, label: "Objets"},
@@ -37,7 +37,7 @@ const Collection = () => {
                 setNextCursor(responseJson.next_cursor);
                 setTimeout(() => {
                     setIsLoading(true);                    
-                }, 200);
+                }, 500);
             }
         };
         fetchData();    
@@ -74,9 +74,11 @@ const Collection = () => {
     const trail = useTrail(imageList.length,{
         config,
         from: { opacity: 0, x: 20 },
-        to: { opacity: isLoading ? 1 : 0, x: isLoading ? 20 : 10 }
+        to: { opacity: isLoading ? 1 : 0, x: isLoading ? 0 : 20 }
     });
-
+    // , x: isLoading ? 0 : 20
+    // , x: 20
+    // (x => `translateX(${x}px)`)
     return (
         <div className="collection">
             <div className="filter">
@@ -100,15 +102,15 @@ const Collection = () => {
             <div className="gallery">
                 <div className='image-grid'>           
                     {isLoading ?
-                        trail.map(({ x, ...otherProps }, i) => (
+                        trail.map(({ ...otherProps }, i) => (
                             <animated.div 
-                                className="img-container" 
+                                className="img-container"
+                                key={imageList[i].asset_id}
                                 style={{
                                     ...otherProps,
-                                    transform: x.interpolate(x => `translate3d(${x}px, 0, 0)`)
                                 }}
                             >
-                                <Card image={imageList[i]} key={imageList.asset_id}/>
+                                <Card image={imageList[i]} />
                             </animated.div>
                     )) : 
                     <Loading />
@@ -116,6 +118,9 @@ const Collection = () => {
                 </div>
                 {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
+            {/* {imageList.map((image) => (
+                <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
+            ))} */}
         </div>
     )};
 export default Collection;
