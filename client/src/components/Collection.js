@@ -3,6 +3,7 @@ import { filteredImages, getImages } from '../api';
 import { useTrail, animated } from 'react-spring';
 import Card from './Card';
 import Loading from './Loading';
+import CheckboxFilter from './CheckboxFilter';
 
 const Collection = () => {
 
@@ -18,7 +19,6 @@ const Collection = () => {
         {id: 3, label: "Paysages"}];
     
     const config = { mass: 5, tension: 2000, friction: 200 };
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,28 +76,14 @@ const Collection = () => {
         from: { opacity: 0, x: 20 },
         to: { opacity: isLoading ? 1 : 0, x: isLoading ? 0 : 20 }
     });
-    // , x: isLoading ? 0 : 20
-    // , x: 20
-    // (x => `translateX(${x}px)`)
     return (
         <div className="collection">
             <div className="filter">
             {checkboxsFilter
             .map((checkbox) => (
-                <li key={checkbox.id}>
-                    <input 
-                        type="radio"
-                        value={checkbox.label} 
-                        id={checkbox.label} 
-                        defaultChecked={checkbox !== '' && checkbox.label === filterValue}
-                        onClick={handleFilterImage}
-                        name="filter"
-                    />
-                    <label htmlFor={checkbox.label}>{checkbox.label}</label>
-                </li>
+                <CheckboxFilter checkbox={checkbox} handleFilterImage={handleFilterImage} filterValue={filterValue}/>
             ))}
             </div>
-
 
             <div className="gallery">
                 <div className='image-grid'>           
@@ -118,9 +104,6 @@ const Collection = () => {
                 </div>
                 {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
-            {/* {imageList.map((image) => (
-                <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
-            ))} */}
         </div>
     )};
 export default Collection;

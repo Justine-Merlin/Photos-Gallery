@@ -1,4 +1,8 @@
-.fullscreen-container {
+.fullcard {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    z-index: 50;
     position: fixed ;
     top: 0;
     left: 0;
@@ -7,8 +11,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 15;
     cursor: pointer;
+
     div {
         background-color: whitesmoke;
         width: fit-content;
@@ -19,5 +23,11 @@
             border-radius: 10px;
             max-height: 80vh;
         }
-    }
+    } 
+}
+.transition {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.2s ease-in-out;
+    z-index: 50;
 }

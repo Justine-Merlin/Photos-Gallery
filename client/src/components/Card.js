@@ -18,15 +18,9 @@ const Card = ( { image } ) => {
         alt={image.public_id}
         onClick={handleChange}
       ></img>
-      {isToggle ?
-        <div style={{visibility: "visible", opacity: 1, transition: "0.25s"}}>
+        <div className={isToggle ? "fullcard transition" : "fullcard"} onClick={handleChange}>
           <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
         </div>
-        :
-        <div style={{visibility: "hidden", opacity: 0, transition: "0.25s"}}>
-          <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
-        </div>
-      }
     </>
   );
 };

@@ -1,7 +1,11 @@
 Start client :
     * new terminal on client folder
-    * run command : npm start
+    * run command :
+        - npm install 
+        - npm start
 
 Start api :
     * new terminal on api folder
-    * run command : npm run server
+    * run command :
+        - npm install
+        - npm run server
