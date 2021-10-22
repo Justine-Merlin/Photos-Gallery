@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CheckboxFilter = ( { checkbox, handleFilterImage, filterValue }) => {
-    console.log(checkbox);
     return (
         <li key={checkbox.id}>
             <input 

@@ -9,9 +9,9 @@ const Navigation = () => {
 
     return (
         <div className='navigation'>
-                <NavLink exact to='/' onClick={() => setShowMenu(false)}>
-                    <Logo />
-                </NavLink>
+            <NavLink exact to='/' onClick={() => setShowMenu(false)}>
+                <Logo />
+            </NavLink>
             <div className={showMenu ? "nav-bar active" : "nav-bar"}>
                 <NavLink  to='/about' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     A propos

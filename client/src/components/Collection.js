@@ -20,28 +20,6 @@ const Collection = () => {
     
     const config = { mass: 5, tension: 2000, friction: 200 };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setImageList([]);
-            setIsLoading(false);
-            if(filterValue !== '') {
-                const responseJson = await filteredImages(filterValue);
-                setImageList(responseJson.resources);
-                setNextCursor(responseJson.next_cursor);
-                setTimeout(() => {
-                    setIsLoading(true);                    
-                }, 200);
-            } else {
-                const responseJson = await getImages(nextCursor);
-                setImageList(responseJson.resources);
-                setNextCursor(responseJson.next_cursor);
-                setTimeout(() => {
-                    setIsLoading(true);                    
-                }, 500);
-            }
-        };
-        fetchData();    
-    }, [filterValue]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleFilterImage = (e) => {
         if(filterValue === '' || e.target.value !== filterValue) {
@@ -76,12 +54,41 @@ const Collection = () => {
         from: { opacity: 0, x: 20 },
         to: { opacity: isLoading ? 1 : 0, x: isLoading ? 0 : 20 }
     });
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            setImageList([]);
+            setIsLoading(false);
+            if(filterValue !== '') {
+                const responseJson = await filteredImages(filterValue);
+                setImageList(responseJson.resources);
+                setNextCursor(responseJson.next_cursor);
+                setTimeout(() => {
+                    setIsLoading(true);                    
+                }, 200);
+            } else {
+                const responseJson = await getImages(nextCursor);
+                setImageList(responseJson.resources);
+                setNextCursor(responseJson.next_cursor);
+                setTimeout(() => {
+                    setIsLoading(true);                    
+                }, 500);
+            }
+        };
+        fetchData();    
+    }, [filterValue]) // eslint-disable-line react-hooks/exhaustive-deps
+
     return (
         <div className="collection">
             <div className="filter">
             {checkboxsFilter
             .map((checkbox) => (
-                <CheckboxFilter checkbox={checkbox} handleFilterImage={handleFilterImage} filterValue={filterValue}/>
+                <CheckboxFilter 
+                    key={checkbox.id} 
+                    checkbox={checkbox} 
+                    handleFilterImage={handleFilterImage} 
+                    filterValue={filterValue}
+                />
             ))}
             </div>
 
