@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { filteredImages, getImages } from '../api';
-import { useTrail, animated } from 'react-spring';
 import Card from './Card';
 import Loading from './Loading';
 import CheckboxFilter from './CheckboxFilter';
@@ -17,9 +16,6 @@ const Collection = () => {
         {id: 1, label: "Mariages"},
         {id: 2, label: "Portrait"}, 
         {id: 3, label: "Paysages"}];
-    
-    const config = { mass: 5, tension: 2000, friction: 200 };
-
 
     const handleFilterImage = (e) => {
         if(filterValue === '' || e.target.value !== filterValue) {
@@ -48,13 +44,6 @@ const Collection = () => {
             setNextCursor(responseJson.next_cursor);
         }
     };
-    
-    const trail = useTrail(imageList.length,{
-        config,
-        from: { opacity: 0, x: 20 },
-        to: { opacity: isLoading ? 1 : 0, x: isLoading ? 0 : 20 }
-    });
-    
     useEffect(() => {
         const fetchData = async () => {
             setImageList([]);
@@ -81,33 +70,25 @@ const Collection = () => {
     return (
         <div className="collection">
             <div className="filter">
-            {checkboxsFilter
-            .map((checkbox) => (
-                <CheckboxFilter 
-                    key={checkbox.id} 
-                    checkbox={checkbox} 
-                    handleFilterImage={handleFilterImage} 
-                    filterValue={filterValue}
-                />
-            ))}
+                {checkboxsFilter.map((checkbox) => (
+                    <CheckboxFilter 
+                        key={checkbox.id} 
+                        checkbox={checkbox} 
+                        handleFilterImage={handleFilterImage} 
+                        filterValue={filterValue}
+                    />
+                ))}
             </div>
-
             <div className="gallery">
                 <div className='image-grid'>           
                     {isLoading ?
-                        trail.map(({ ...otherProps }, i) => (
-                            <animated.div 
-                                className="img-container"
-                                key={imageList[i].asset_id}
-                                style={{
-                                    ...otherProps,
-                                }}
-                            >
-                                <Card image={imageList[i]} />
-                            </animated.div>
+                        imageList.map((image) => (
+                            <div className="img-container" key={image.asset_id} >
+                                <Card image={image} />
+                            </div>
                     )) : 
-                    <Loading />
-                }
+                        <Loading />
+                    }
                 </div>
                 {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>

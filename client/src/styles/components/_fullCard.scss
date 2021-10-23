@@ -16,12 +16,13 @@
     div {
         background-color: whitesmoke;
         width: fit-content;
-        padding: 30px;
+        padding: 1.5rem;
         border-radius: 10px;
         transition: 0.2s;
         img {
             border-radius: 10px;
             max-height: 80vh;
+            width: 100%;
         }
     } 
 }
