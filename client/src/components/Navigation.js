@@ -17,7 +17,7 @@ const Navigation = () => {
                     A propos
                 </NavLink>
                 <NavLink  to='/gallery' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
-                    Gallerie
+                    Galerie
                 </NavLink>
                 <NavLink  to='/contact' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     Contact
