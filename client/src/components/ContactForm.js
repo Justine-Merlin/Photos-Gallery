@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ContactForm = ({ setFormData, formData, sendEmail, errorMessage, mailNotCorrect }) => {
+  const [rows, setRows] = useState(null);
+  useEffect(() => {
+    let height = window.innerHeight;
+    if(height > 790){
+      setRows(10)
+    } else {
+      setRows(5)
+    }
+  }, [])
+  console.log(rows);
   return (
     <form onSubmit={sendEmail}>
       <div>
@@ -38,7 +48,7 @@ const ContactForm = ({ setFormData, formData, sendEmail, errorMessage, mailNotCo
             setFormData({ ...formData, message: e.target.value })
           }
           placeholder="Votre message ..."
-          rows="10"
+          rows={rows}
         />
         {errorMessage.messageErr && <p>Veuillez renseigner votre message</p>}
       </div>
