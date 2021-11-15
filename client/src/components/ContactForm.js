@@ -10,7 +10,6 @@ const ContactForm = ({ setFormData, formData, sendEmail, errorMessage, mailNotCo
       setRows(5)
     }
   }, [])
-  console.log(rows);
   return (
     <form onSubmit={sendEmail}>
       <div>
