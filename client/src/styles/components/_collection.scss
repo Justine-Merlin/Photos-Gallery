@@ -1,56 +1,81 @@
-.gallery {
-    background-color:rgba(105, 105, 105, 0.322);
-    padding: 20px;
-    border: 1px solid rgb(207, 155, 88);
-    border-radius: 10px;
-    margin: 0 10px;
-    .image-grid {
-        display: grid;
-        gap: 0.5rem;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        .img-container {
-            width: 100%;
-            height: 100%;
+.collection {
+    margin-top: 150px;
+    .gallery {
+        background-color:rgba(105, 105, 105, 0.322);
+        padding: 20px;
+        border: 1px solid $gold-color;
+        border-radius: 10px;
+        margin: 0 10px;
+        min-height: 100vh;
+        height: fit-content;
+        .image-grid {
+            position: relative;
+            display: grid;
+            gap: 0.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            min-height: 100vh;
+        }
+        button {
+            display: block;
+            width: 40%;
+            min-width: 200px;
+            margin: 50px auto 20px;
+            padding: 18px;
+            color: #000;
+            letter-spacing: .15rem;
+            transition: all .3s;
+            position: relative;
             overflow: hidden;
-            border-radius: 5px;
-            img {
+            z-index: 1;
+            border-radius: 50px;
+            font-size: 2.3rem;
+            border: 3px solid $gold-color;
+            transition: 0.25s;
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
-                transition: 0.3s ease-in-out;
-                &:hover {
-                    transform: scale(105%); 
+                background-color: $ligth-grey;
+                border-radius: 10rem;
+                z-index: -2;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                background-color: lighten($ligth-grey, 5%);
+                transition: all .3s ease-in-out;
+                border-radius: 20rem;
+                z-index: -1;
+            }
+            &:hover {
+                
+                &:before {
+                    height: 100%;
+                    width: 100%
                 }
             }
-        }
-    }
-    button {
-        display: block;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: rgb(194, 194, 194);
-        border-radius: 10px;
-        font-size: 2.3rem;
-        border: 0px solid rgba(128, 128, 128, 0);
-        transition: 0.25s;
-        &:hover {
-            background-color: rgb(216, 216, 216);
-        }
-        &:active {
-            background-color: rgb(97, 97, 97);
-            border: 1px solid rgba(0, 0, 0, 0.294);
-            
+            &:active {
+                background-color: rgb(97, 97, 97);
+                border: 1px solid rgba(0, 0, 0, 0.294);  
+            }
         }
     }
 }
 
 @media screen and (max-width: 546px) {
     .gallery {
-        padding: 0px;
+        //padding: 0px;
         border: none;
         .image-grid {
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-
         }
         button {
             font-size: 1.5rem;

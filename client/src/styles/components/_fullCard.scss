@@ -1,0 +1,34 @@
+.fullcard {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    z-index: 50;
+    position: fixed ;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    div {
+        background-color: whitesmoke;
+        width: fit-content;
+        padding: 1.5rem;
+        border-radius: 10px;
+        transition: 0.2s;
+        img {
+            border-radius: 10px;
+            max-height: 80vh;
+            width: 100%;
+        }
+    } 
+}
+.transition {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.2s ease-in-out;
+    z-index: 50;
+}

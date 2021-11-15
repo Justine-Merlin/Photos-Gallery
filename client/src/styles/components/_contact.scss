@@ -1,0 +1,130 @@
+.contact {
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    margin: 0;
+    margin-top: 120px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        color: #fff;
+        letter-spacing: 2px;
+    }
+    form {
+        background-color:rgba(105, 105, 105, 0.322);
+        padding: 20px;
+        border: 1px solid $gold-color;
+        border-radius: 10px;
+        width: 60%;
+        max-width: 800px;;
+        div {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            label {
+                color: #fff;
+                font-size: 1.4rem;
+                padding: 8px;
+            }
+            input[type="text"] {
+                padding: 8px;
+                border-radius: 5px;
+                transition: 0.2s;
+                background-color: rgb(221, 221, 221);
+                border: none;
+                font-size: 1.1rem;
+                &:focus {
+                   outline: solid 2px $gold-color;
+                   box-shadow: 0px 0px 8px $gold-color;
+                }
+            }
+            textarea {
+                resize: none;
+                padding: 8px;
+                border-radius: 5px;
+                font-family: $font-2;
+                background-color: rgb(221, 221, 221);
+                border: none;
+                font-size: 1.1rem;
+                &:focus {
+                    outline: solid 2px $gold-color;
+                    box-shadow: 0px 0px 8px $gold-color;
+                }
+            }
+            p {
+                color: $gold-color;
+                font-size: 1.2rem;
+                margin: 10px;
+            }
+        }
+        button {
+            font-family: $font-2;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #000;
+            display: block;
+            margin: 20px auto;
+            padding: 5px;
+            width: 50%;
+            border-radius: 5px;
+            border: 3px solid $gold-color;
+            background-color: $ligth-grey;
+            transition: 0.3s ease-in-out;
+            &:hover {
+                background-color: lighten($ligth-grey, 8%);
+            }
+            &:active {
+                background-color: rgb(97, 97, 97);
+                border: 2px solid rgba(0, 0, 0, 0.294);  
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .contact {
+        align-content: space-between;
+        h1 {
+            font-size: 1.5rem;
+        }
+        form {
+            width: 80%;
+            padding: 10px;
+            div {
+                margin: 0 auto;
+                label {
+                    padding: 4px;
+                    font-size: 1.2rem;
+                }
+                input[type="text"] {
+                    font-size: 1rem;
+                }
+                textarea {
+                    font-size: 1rem;
+                }
+                p {
+                    font-size: 1rem;
+                    margin: 5px;
+                }
+            }
+            button {
+                font-size: 1.2rem;
+                margin: 10px auto;
+            }
+        }
+
+    }
+}
+@media screen and (max-width: 450px) {
+    .contact {
+        form {
+            button {
+                width: 70%;
+            }
+        }
+
+    }
+}
