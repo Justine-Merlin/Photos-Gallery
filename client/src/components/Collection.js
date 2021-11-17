@@ -90,7 +90,7 @@ const Collection = () => {
                         <Loading />
                     }
                 </div>
-                {nextCursor && <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
+                {nextCursor &&  <button onClick={handleLoadMoreButtonClick}>Voir plus</button>}
             </div>
         </div>
     )};

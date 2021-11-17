@@ -1,5 +1,5 @@
 .logo-menu {
-    position: fixed;
+    position: absolute;
     top: 60px;
     right: 40px;
     transform: translateY(-50%);
@@ -23,4 +23,9 @@
         opacity: 1;
     }
     
+}
+@media screen and (max-width: 546px) {
+    .logo-menu {
+        top: 50px;
+    }
 }
