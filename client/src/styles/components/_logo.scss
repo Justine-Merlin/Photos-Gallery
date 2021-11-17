@@ -1,9 +1,15 @@
 .logo {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    max-height: 110px;
+    //max-width: 140px;
     img {
-        height: 125px;
-        width: 140px;
+        padding: 5px;
+        height: 100%;
     }
 }

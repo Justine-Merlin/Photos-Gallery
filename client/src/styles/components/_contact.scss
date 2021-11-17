@@ -118,8 +118,10 @@
 
     }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 456px) {
     .contact {
+        min-height: calc(100vh - 90px);
+        margin-top: 90px;
         form {
             button {
                 width: 70%;
