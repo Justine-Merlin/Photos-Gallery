@@ -19,8 +19,8 @@ function App() {
         <animated.div style={props} >
           <Switch location={item}>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/gallery" component={Gallery} />
+            <Route path="/propos" component={About} />
+            <Route path="/galerie" component={Gallery} />
             <Route path="/contact" component={Contact} />
           </Switch>
         </animated.div>

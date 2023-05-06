@@ -41,7 +41,7 @@ const Home = () => {
           <h3>Votre histoire</h3>
         </animated.div>
         <animated.div className="home-btn" style={{ ...homeBtnStyle }}>
-          <NavLink to="/gallery">Créer la votre</NavLink>
+          <NavLink to="/galerie">Créer la votre</NavLink>
         </animated.div>
       </animated.div>
     </div>
