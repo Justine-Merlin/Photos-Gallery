@@ -13,10 +13,10 @@ const Navigation = () => {
                 <Logo />
             </NavLink>
             <div className={showMenu ? "nav-bar active" : "nav-bar"}>
-                <NavLink  to='/gallery' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
+                <NavLink  to='/galerie' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     Galerie
                 </NavLink>
-                <NavLink  to='/about' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
+                <NavLink  to='/propos' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
                     A propos
                 </NavLink>
                 <NavLink  to='/contact' className="nav-link" activeClassName='nav-active' onClick={() => setShowMenu(false)}>
