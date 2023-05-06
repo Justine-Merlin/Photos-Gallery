@@ -33,4 +33,6 @@ For backend app :
 
 ## Screenshots
 
-![image](https://drive.google.com/file/d/1jK_TBrnBwqHjd_pxK6Sbr6sY8ZpnC0ee/view?usp=sharing)
+![](./screenshots/galerie_photo_home_screen.jpg)
+![](./screenshots/galerie_photo_gallery_screen.jpg)
+![](./screenshots/galerie_photo_zoom_screen.jpg)
