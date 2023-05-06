@@ -24,12 +24,12 @@ See the result [here](https://reactphotosgallery.netlify.app/).
 ## Initialization
 
 #### For client app :
-1. Clone this [repo](https://github.com/Justine-Merlin/Photos_Gallery_Api)
+1. Clone this repo
 2. Run command `cd Photos-Gallery` then `npm install`
 3. To start server, run command `npm start`
 
 #### For backend app :
-1. Clone this repo
+1. Clone this [repo](https://github.com/Justine-Merlin/Photos_Gallery_Api)
 2. Run command `cd Photos-Gallery_API` then `npm install`
 3. To start server, run command `npm run server`
 
