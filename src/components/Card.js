@@ -25,6 +25,7 @@ const Card = ( { image } ) => {
         alt={image.public_id}
         onClick={handleChange}
         style={style}
+        loading="lazy"
       ></animated.img>
         <div className={isToggle ? "fullcard transition" : "fullcard"} onClick={handleChange}>
           <FullCard handleChange={handleChange} isToggle={isToggle} image={image}/>
